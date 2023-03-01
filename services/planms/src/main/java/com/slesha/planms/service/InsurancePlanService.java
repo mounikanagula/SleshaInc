@@ -51,6 +51,7 @@ public class InsurancePlanService {
     }
 
     public Optional<User> getUser(String emailId){
+        template.send("user-plans", emailId);
         ResponseEntity<User> response=template.getForEntity("http://userms:8080/userms/"+emailId, User.class);
         if(response.getStatusCode()==HttpStatus.ACCEPTED){
             return Optional.of(response.getBody());
